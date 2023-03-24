@@ -116,80 +116,66 @@ infos.forEach(element => {
     labelStatus.appendChild(heart)
     labelStatus.appendChild(stats)
     
-    
-    
-        xBtn.addEventListener("click", () => {
-            const index = infos.indexOf(element);
-            if (index !== -1) {
-                infos.splice(index, 1);
-                card.remove();
-            }
-        });
-    
-        //heart btn
-        let isActive = false
-        heart.addEventListener("click", () => {
-            if(!isActive){
-                isActive = true
-                element.status += 0.1;
-                stats.innerText = element.status.toFixed(1) + "K";
-                heart.style.color = "#0266FF"
-            }else{
-                isActive = false
-                element.status -= 0.1;
-                stats.innerText = element.status.toFixed(1) + "K";
-                heart.style.color = "black"
-
-            }
-            console.log(isActive)
-        });
-        
-
-})
-
-
-const cards = Array.from(document.getElementsByClassName("card"))
-
-let isActive = false;
-
-cards.forEach(ele => {
-    const check = ele.querySelector(".fa-circle-check");
-    const x = ele.querySelector(".fa-x");
-    const img = ele.querySelector(".img");
-    const title = ele.querySelector(".title");
-
-    ele.addEventListener("mouseover", e => {
-        check.setAttribute("id", "show")
-        x.setAttribute("id", "show")
-        img.style.opacity = "0.8";
-    })
-    ele.addEventListener("mouseout", e => {
-        if(!isActive){
-            check.removeAttribute("id")
+    //to delete a card
+    xBtn.addEventListener("click", () => {
+        const index = infos.indexOf(element);
+        if (index !== -1) {
+            infos.splice(index, 1);
+            card.remove();
         }
-        x.removeAttribute("id")
-        img.style.opacity = "1";
-    })
+    });
 
-
-    check.addEventListener("click", e => {
-        
+    //heart btn
+    let isActive = false
+    heart.addEventListener("click", () => {
         if(!isActive){
             isActive = true
+            element.status += 0.1;
+            stats.innerText = element.status.toFixed(1) + "K";
+            heart.style.color = "#0266FF";
 
-            check.style.color = "#0266FF"
-            title.style.color = "gray"; 
         }else{
-
             isActive = false
-            check.removeAttribute("id")
-
-            check.style.color = ""
-            title.style.color = ""
+            element.status -= 0.1;
+            stats.innerText = element.status.toFixed(1) + "K";
+            heart.style.color = "black"
         }
-      })
+    });
+    
+
+    //cards hovering effect
+    
+    let Active = false; 
+    const chec = card.querySelector(".fa-circle-check");
+    const x = card.querySelector(".fa-x");
+    const im = card.querySelector(".img");
+    const titl = card.querySelector(".title");
+    
+    card.addEventListener("mouseover", e => {
+        chec.setAttribute("id", "show")
+        x.setAttribute("id", "show")
+        im.style.opacity = "0.8";
+    })
+    card.addEventListener("mouseout", e => {
+        if(!Active){
+            chec.removeAttribute("id")
+        }
+        x.removeAttribute("id")
+        im.style.opacity = "1";
+    })
+
+    //check btn
+    check.addEventListener("click", e => {
+        if(!Active){
+            Active = true
+            chec.style.color = "#0266FF"
+            titl.style.color = "gray"; 
+        }else{
+            Active = false
+            chec.removeAttribute("id")
+            chec.style.color = ""
+            titl.style.color = ""
+        }
+    })
 })
 
-
-
-  
