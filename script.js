@@ -126,6 +126,7 @@ infos.forEach(element => {
             }
         });
     
+        //heart btn
         let isActive = false
         heart.addEventListener("click", () => {
             if(!isActive){
